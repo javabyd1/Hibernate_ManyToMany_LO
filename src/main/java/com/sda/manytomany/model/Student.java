@@ -3,31 +3,23 @@ package com.sda.manytomany.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="student")
 public class Student {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="name")
 	private String name;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "STUDENT_SUBJECT", 
-			    joinColumns = { @JoinColumn(name = "STU_ID") }, 
-			    inverseJoinColumns = { @JoinColumn(name = "SUB_ID") })
+//	@JoinTable(name = "STUDENT_SUBJECT",
+//			    joinColumns = { @JoinColumn(name = "STU_ID") },
+//			    inverseJoinColumns = { @JoinColumn(name = "SUB_ID") })
 	private List<Subject> subjects = new ArrayList<>();
 
 	public Long getId() {
